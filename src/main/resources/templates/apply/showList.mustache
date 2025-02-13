@@ -1,0 +1,40 @@
+{{>components/header}}
+
+<style>
+    .table a {
+        text-decoration: none; /* Remove underline */
+    }
+</style>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">이름</th>
+        <th scope="col">상태</th>
+        <th scope="col">전화번호</th>
+        <th scope="col">지원시간</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Entity를 가져오기 -->
+    {{#applyList}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/applies{{id}}" class="fw-bold text-success">{{name}}</a></td> <!-- Bootstrap class for bold text -->
+            <td>{{state}}</td>
+            <td>{{phoneNumber}}</td>
+            <td>{{createTime}}</td>
+        </tr>
+    {{/applyList}}
+    </tbody>
+</table>
+
+<form class="row justify-content-center p-5" action="/deleteAll" method="get">
+
+    <div class="col-md-6 mb-3 text-center">
+        <button type="submit" name="delete" class="btn btn-danger text-white w-100 px-3">모두 삭제하기(누르면 날아가니까 신중히!!)</button>
+    </div>
+</form>
+
+{{>components/footer}}
