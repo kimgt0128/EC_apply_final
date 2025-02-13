@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # EC_BackendService
 학술동아리 Endless Creacion의 지원자 모집을 위한 서버 입니다.
 
@@ -9,3 +10,7 @@
 
 ![스크린샷 2024-09-09 0005120](https://github.com/user-attachments/assets/a4215d45-ffaf-4cb5-a4b4-3b74a0303472)
 
+=======
+# EC_apply_instance
+임시 지원자 관리 페이지
+>>>>>>> 754c43c355e4926cf390c9d121439e552fccdff0
