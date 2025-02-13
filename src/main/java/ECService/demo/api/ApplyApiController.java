@@ -1,12 +1,18 @@
 package ECService.demo.api;
 
-import ECService.demo.dto.ApplyForm;
+import ECService.demo.dto.ApplyRequest;
+import ECService.demo.dto.ApplyResponse;
+import ECService.demo.dto.ApplyResultResponse;
 import ECService.demo.entity.Apply;
 import ECService.demo.repository.ApplyRepository;
 import ECService.demo.repository.ListInfoRepository;
 import ECService.demo.repository.mapping.ListInfoMapping;
+import ECService.demo.service.ApplyService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +23,16 @@ import java.util.NoSuchElementException;
 
 @RestController //RestAPI 용 컨트롤러 - JSON을 반환
 @Slf4j // 각 메서드마다 로그 남기기 -> 이후 유지보수
+@RequiredArgsConstructor
+
+@RequestMapping("/api")
 public class ApplyApiController {
     @Autowired
     ApplyRepository applyRepository;
     @Autowired
     ListInfoRepository listInfoRepository;
+
+    private final ApplyService applyService;
 
     //GET
     @GetMapping("/api/applies")
@@ -43,9 +54,39 @@ public class ApplyApiController {
         return ResponseEntity.ok(formEntity);
     }
 
+//여기서부터
+
+    // 새로운 지원자 추가
+    @PostMapping("/apply")
+    public ResponseEntity<ApplyResponse> createApplication(@RequestBody ApplyRequest request) {
+        ApplyResponse response = applyService.save(request);
+
+        return response == null ?
+                ResponseEntity.badRequest()
+                        .header("요청 실패", "지원서 제출에 실패했습니다")
+                        .build() :
+                ResponseEntity.ok()
+                        .header("요청 성공", "지원서가 성공적으로 제출되었습니다")
+                        .body(response);
+    }
+
+    // 지원 결과 반환
+    @GetMapping("/result")
+    public ResponseEntity<ApplyResultResponse> showResult1(@RequestParam String phonenumber) {
+        ApplyResultResponse response = applyService.result(phonenumber);
+
+        return response == null ?
+                ResponseEntity.notFound()
+                        .header("요청 실패", "존재하지 않음")
+                        .build() :
+                ResponseEntity.ok()
+                        .header("요청 성공", "지원서가 존재")
+                        .body(response);
+    }
+
     ///POST
     @PostMapping("/api/applyForm")
-    public ResponseEntity<Apply> applyForm(@RequestBody ApplyForm applyDto) {
+    public ResponseEntity<Apply> applyForm(@RequestBody ApplyRequest applyDto) {
         Apply applyEntity = applyDto.toEntity();
         Apply savedEntity = applyRepository.save(applyEntity);
         log.info("Saved Apply entity: {}", savedEntity);

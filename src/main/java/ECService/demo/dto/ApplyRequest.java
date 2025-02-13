@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @AllArgsConstructor
 @ToString
-public class ApplyForm {
+public class ApplyRequest {
 
     private String name;
     private String major;

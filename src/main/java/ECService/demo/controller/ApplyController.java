@@ -1,7 +1,7 @@
 package ECService.demo.controller;
 
 
-import ECService.demo.dto.ApplyForm;
+import ECService.demo.dto.ApplyRequest;
 import ECService.demo.entity.Apply;
 import ECService.demo.repository.ApplyRepository;
 import ECService.demo.repository.ListInfoRepository;
@@ -27,7 +27,7 @@ public class ApplyController {
     private ApplyRepository applyRepository;
 
     @PostMapping("forms/apply")
-    public String applyForm(ApplyForm form) {
+    public String applyForm(ApplyRequest form) {
         //System.out.println("DTO: " + form.toString());
         log.info("DTO: " + form);
 
