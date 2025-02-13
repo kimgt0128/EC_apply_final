@@ -2,8 +2,10 @@ package ECService.demo.dto;
 
 import ECService.demo.entity.Apply;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
 
+@Getter
 @AllArgsConstructor
 @ToString
 public class ApplyRequest {
@@ -21,15 +23,14 @@ public class ApplyRequest {
     //Entity로 만들기 위한 함수
     public Apply toEntity() {
         return Apply.builder()
-                .name(name)
-                .major(major)
-                .studentId(studentId)
-                .birth(birth)
-                .phoneNumber(phoneNumber)
-                .email(email)
-                .question1(question1)
-                .question2(question2)
-                .question3(question3)
+                .name(this.getName())
+                .major(this.getMajor())
+                .birth(this.getBirth())
+                .phoneNumber(this.getPhoneNumber())
+                .email(this.getEmail())
+                .question1(this.getQuestion1())
+                .question2(this.getQuestion2())
+                .question3(this.getQuestion3())
                 .build();
     }
 }

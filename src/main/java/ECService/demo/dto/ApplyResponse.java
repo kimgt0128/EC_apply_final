@@ -3,33 +3,48 @@ package ECService.demo.dto;
 
 import ECService.demo.entity.Apply;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ApplyResponse {
-    private Long id;  // 저장된 Apply 엔티티의 ID
+    private Long id;
     private String name;
     private String major;
     private String studentId;
+    private String birth;
+    private String phoneNumber;
     private String email;
-    private String message;  // 처리 결과 메시지 (예: "저장되었습니다" 또는 오류 메시지)
-    private boolean success;  // 처리 성공 여부
+    private String state;
+    private LocalDateTime createTime;
+    private String question1;
+    private String question2;
+    private String question3;
 
-    // 생성자, getter, setter 등은 lombok 어노테이션으로 자동 생성됩니다.
 
-    // Apply 엔티티로부터 ApplyResponse를 생성하는 정적 메서드
-    public static ApplyResponse fromEntity(Apply apply, String message, boolean success) {
-        return new ApplyResponse(
-                apply.getId(),
-                apply.getName(),
-                apply.getMajor(),
-                apply.getStudentId(),
-                apply.getEmail(),
-                message,
-                success
-        );
+
+
+    // Apply 엔티티로부터 ApplyResponse를 생성하는 새로운 생성자 정의
+    public ApplyResponse(Apply apply) {
+    ApplyResponse.builder()
+            .id(apply.getId())
+            .name(apply.getName())
+            .major(apply.getMajor())
+            .studentId(apply.getStudentId())
+            .birth(apply.getBirth())
+            .phoneNumber(apply.getPhoneNumber())
+            .email(apply.getEmail())
+            .state(apply.getState())
+            .createTime(apply.getCreateTime())
+            .question1(apply.getQuestion1())
+            .question2(apply.getQuestion2())
+            .question3(apply.getQuestion3())
+            .build();
     }
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Optional;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,12 +17,14 @@ public class ApplyResultResponse {
     private String phoneNumber;
     private String state;
 
-    // Apply 엔티티로부터 ApplyResultResponse를 생성하는 정적 팩토리 메서드
-    public static ApplyResultResponse fromApply(Apply apply) {
-        return new ApplyResultResponse(
-                apply.getName(),
-                apply.getPhoneNumber(),
-                apply.getState()
+    // Apply 엔티티로부터 ApplyResultResponse를 생성하는 생성자
+    public ApplyResultResponse(Apply apply) {
+        new ApplyResultResponse(
+            apply.getName(),
+            apply.getPhoneNumber(),
+            apply.getState()
         );
     }
+
+
 }
