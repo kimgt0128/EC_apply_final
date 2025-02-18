@@ -3,8 +3,8 @@ spring:
     name: EC_apply
   datasource:
     driver-class-name: org.h2.Driver
-    #url: jdbc:h2:file:/home/kimgt/data/EC_apply;DB_CLOSE_ON_EXIT=FALSE
-    url: jdbc:h2:file:C:/Users/kimgt/EC_apply;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:/home/ubuntu/EC_apply;DB_CLOSE_ON_EXIT=FALSE
+    #url: jdbc:h2:file:C:/Users/kimgt/EC_apply;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password: "0000"
 
