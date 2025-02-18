@@ -19,11 +19,9 @@ public class ApplyResultResponse {
 
     // Apply 엔티티로부터 ApplyResultResponse를 생성하는 생성자
     public ApplyResultResponse(Apply apply) {
-        new ApplyResultResponse(
-            apply.getName(),
-            apply.getPhoneNumber(),
-            apply.getState()
-        );
+        this.name = apply.getName();
+        this.phoneNumber = apply.getPhoneNumber();
+        this.state = apply.getState();
     }
 
 

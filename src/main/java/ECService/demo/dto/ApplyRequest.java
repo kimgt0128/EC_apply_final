@@ -27,6 +27,7 @@ public class ApplyRequest {
                 .major(this.getMajor())
                 .birth(this.getBirth())
                 .phoneNumber(this.getPhoneNumber())
+                .studentId(this.getStudentId())
                 .email(this.getEmail())
                 .question1(this.getQuestion1())
                 .question2(this.getQuestion2())

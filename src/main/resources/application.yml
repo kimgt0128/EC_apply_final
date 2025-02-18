@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: EC_apply
+  datasource:
+    driver-class-name: org.h2.Driver
+    #url: jdbc:h2:file:/home/kimgt/data/EC_apply;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:h2:file:C:/Users/kimgt/EC_apply;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: "0000"
+
+  h2:
+    console:
+      enabled: true # H2 콘솔 활성화 (개발 시 유용)
+      path: /h2-console # H2 콘솔 접속 경로
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    naming:
+      #physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      #physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        highlight_sql: true
+        use_sql_comments: true
+        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+    org.hibernate.orm.jdbc.bind: TRACE
+server:
+  #port: 9595
+  servlet:
+    encoding:
+      force: true
+      enabled: true
+      charset: UTF-8

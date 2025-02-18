@@ -2,7 +2,7 @@ package ECService.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import lombok.extern.apachecommons.CommonsLog;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDateTime;
 
@@ -27,22 +27,41 @@ public class Apply {
     private String studentId;
     @Column
     private String birth;
-    @Column
+    @Column(columnDefinition = "VARCHAR(255)")
     private String phoneNumber;
     @Column
     private String email;
-    @Column(columnDefinition = "Text", length = 320)
+    @Column
     private String question1;
-    @Column(columnDefinition = "Text", length = 320)
+    @Column
     private String question2;
-    @Column(columnDefinition = "Text", length = 320)
+    @Column
     private String question3;
 
     //기본값 지정
-    @Builder.Default
-    @Column
-    private String state = "unDefined"; //합격 여부를 확인할 변수 -> 이후 repository에서 update를 통해 상태 변화하기
-    @Builder.Default
-    @Column
-    private LocalDateTime createTime = LocalDateTime.now();
+    //@ColumnDefault("'undefined'")
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'undefined'")
+    private String state;
+
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createTime;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.createTime == null) {
+            this.createTime = LocalDateTime.now();
+        }
+        if (this.state == null) {
+            this.state = "undefined";
+        }
+    }
+
+    //합격 불합격
+    public void pass() {
+        this.state = "pass";
+    }
+
+    public void fail() {
+        this.state = "fail";
+    }
 }
