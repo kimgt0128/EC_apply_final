@@ -45,10 +45,10 @@ public class ApplyApiController {
     @GetMapping("/result")
     public ResponseEntity<ApplyResultResponse> showResult(@RequestParam String phoneNumber) {
 
-        log.info("phonenumber: {}", phoneNumber);
+        log.info("결과 요청 - phonenumber: {}", phoneNumber);
         ApplyResultResponse response = applyService.result(phoneNumber);
 
-        log.info("response: {}", response);
+        log.info("상태 변경 완료 - response: {}", response);
         return response == null ?
                 ResponseEntity.notFound()
                         .build() :

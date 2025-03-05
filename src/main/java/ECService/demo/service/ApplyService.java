@@ -30,19 +30,18 @@ public class ApplyService {
     }
 
     public ApplyResultResponse result(String phoneNumber) {
-        log.info("phoneNumber: {}", phoneNumber);
         ApplyResultResponse response = null;
         List<Apply> applies = applyRepository.findAll();
-        log.info("applies: {}", applies);
+        //log.info("applies: {}", applies);
         String normalizedPhoneNumber = normalizePhoneNumber(phoneNumber); // Normalize the input phone number
 
         for (Apply apply : applies) {
             String normalizedApplyPhoneNumber = normalizePhoneNumber(apply.getPhoneNumber()); // Normalize the phone number from Apply entity
 
-            System.out.println(toHex(normalizedApplyPhoneNumber) + "|" + toHex(normalizedPhoneNumber)); // Print HEX to debug
+            //System.out.println(toHex(normalizedApplyPhoneNumber) + "|" + toHex(normalizedPhoneNumber)); // Print HEX to debug
 
             if (normalizedApplyPhoneNumber.equals(normalizedPhoneNumber)) {  // Compare normalized phone numbers
-                log.info("apply result: {}", apply);
+                log.info("[Service] - findByPhoneNumber 결과 - apply {}", apply);
                 response = new ApplyResultResponse(apply);
             }
         }

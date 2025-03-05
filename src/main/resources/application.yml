@@ -3,15 +3,18 @@ spring:
     name: EC_apply
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:file:/home/ubuntu/EC_apply;DB_CLOSE_ON_EXIT=FALSE
-    #url: jdbc:h2:file:C:/Users/kimgt/EC_apply;DB_CLOSE_ON_EXIT=FALSE
+    #url: jdbc:h2:file:/home/ubuntu/EC_apply;
+    #url: jdbc:h2:file:C:/Users/kimgt/EC_apply;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+    url: jdbc:h2:file:C:/Users/kimgt/EC_apply;
     username: sa
-    password: "0000"
+    password: "0128"
 
   h2:
     console:
       enabled: true # H2 콘솔 활성화 (개발 시 유용)
-      path: /h2-console # H2 콘솔 접속 경로
+      path: /h2-console # H2 콘솔 접속 경로e
+      settings:
+        web-allow-others: true # 외부에서 서버로 DB에 접속할 수 있도록 허용
 
 
   jpa:

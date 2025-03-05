@@ -31,11 +31,11 @@ public class Apply {
     private String phoneNumber;
     @Column
     private String email;
-    @Column
+    @Column(length = 500)
     private String question1;
-    @Column
+    @Column(length = 500)
     private String question2;
-    @Column
+    @Column(length = 500)
     private String question3;
 
     //기본값 지정

@@ -43,7 +43,7 @@ public class ApplyAdminService {
         }
         applyRepository.save(apply);
         String changed = apply.getState();
-        log.info("지원자의 상태가 {}으로 변경됨", changed);
+        //log.info("지원자의 상태가 {}으로 변경됨", changed);
         return changed;
     }
 }
